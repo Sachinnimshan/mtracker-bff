@@ -26,7 +26,6 @@ export const createTrackItem = async (req, res) => {
       title: req.body.title,
       amount: req.body.amount,
       type: req.body.type,
-      typeName: req.body.typeName,
       date: req.body.date,
       note: req.body.note,
     });
