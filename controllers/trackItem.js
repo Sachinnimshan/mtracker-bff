@@ -34,9 +34,9 @@ export const createTrackItem = async (req, res) => {
     if (newItem) {
       res.status(201).send({ message: "Item saved" });
     } else {
-      res.json(401).send({ message: "Something went wrong" });
+      res.status(401).send({ message: "Something went wrong" });
     }
   } catch (error) {
-    res.json(401).send({ message: "Something went wrong" });
+    res.status(401).send(error);
   }
 };
