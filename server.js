@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import http from "http";
 import dotenv from "dotenv";
 import trackItemRouter from "./routes/trackRouter.js";
+import userRouter from './routes/authRouter.js';
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ mongoose
   .catch((error) => console.log(error));
 
 app.use("/api/trackItems", trackItemRouter);
+app.use("/api/user", userRouter);
 
 app.use("/", (req, res) => {
   res.send("Server is Ready");
