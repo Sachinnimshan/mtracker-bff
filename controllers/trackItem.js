@@ -13,7 +13,8 @@ export const feedTrackItems = async (req, res) => {
 
 export const getAllTrackItems = async (req, res) => {
   try {
-    const trackdata = await TrackItem.find({});
+    const userID = req.params.id;
+    const trackdata = await TrackItem.find({ creator: userID });
     res.status(200).send(trackdata);
   } catch (error) {
     res.status(401).send(error);
@@ -22,16 +23,12 @@ export const getAllTrackItems = async (req, res) => {
 
 export const createTrackItem = async (req, res) => {
   try {
-    const trackItem = new TrackItem({
-      title: req.body.title,
-      amount: req.body.amount,
-      type: req.body.type,
-      date: req.body.date,
-      note: req.body.note,
-    });
-    const newItem = await trackItem.save();
-    if (newItem) {
-      res.status(201).send({ message: "Item saved" });
+    const newTransaction = req.body;
+    const newItem = new TrackItem({ ...newTransaction, creator: req.userID });
+    const postedItem = await newItem.save();
+
+    if (posted) {
+      res.status(201).send({ data: postedItem, message: "Item saved" });
     } else {
       res.status(401).send({ message: "Something went wrong" });
     }

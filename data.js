@@ -3,33 +3,18 @@ export const Data = {
     {
       title: "Telephone Bill",
       amount: 3500,
-      type: "Expense",
-      typeName: "SLT bill",
+      type: true,
       date: new Date(2023, 1, 31),
       note: "",
+      creator: "63d8a765af6bda071967a941"
     },
     {
-        title: "Water Bill",
-        amount: 1500,
-        type: "Expense",
-        typeName: "Water bill",
-        date: new Date(2023, 1, 31),
-        note: "",
-      },
-      {
-        title: "Job Salary",
-        amount: 150000,
-        type: "Income",
-        typeName: "Salary",
-        date: new Date(2023, 1, 31),
-        note: "",
-      },{
-        title: "Cinammon Harvest",
-        amount: 100000,
-        type: "Income",
-        typeName: "Cinammon",
-        date: new Date(2023, 1, 31),
-        note: "",
-      }
-  ],
+      title: "Water Bill",
+      amount: 1500,
+      type: false,
+      date: new Date(2023, 1, 31),
+      note: "",
+      creator: "63d8a765af6bda071967a941"
+    },
+  ]
 };
