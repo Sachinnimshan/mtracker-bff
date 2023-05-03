@@ -1,22 +1,20 @@
 import MTrackuser from "../models/auth.js";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { generateToken } from "../utils.js";
 
 export const userLogin = async (req, res) => {
   try {
     const user = await MTrackuser.findOne({ email: req.body.email });
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        const token = jwt.sign({ email: user.email, id: user._id }, "secret", {
-          expiresIn: "1h",
-        });
-        const result = {
+        res.send({
           _id: user._id,
           name: user.name,
           email: user.email,
-        };
-        res.status(200);
-        return res.json({ result, token });
+          token: generateToken(user),
+        });
+        return;
       }
     }
     res.status(401).send("Invalid username or password");
